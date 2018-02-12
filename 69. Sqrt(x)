@@ -1,0 +1,54 @@
+Implement int sqrt(int x).
+
+Compute and return the square root of x.
+
+x is guaranteed to be a non-negative integer.
+
+Example 1:
+
+Input: 4
+Output: 2
+
+牛顿法是比较经典的方法了，就是不断用其函数切线与x轴的交点坐标来逼近
+
+//class Solution {//普通遍历和二分遍历对于很大的数都不好用
+//public:
+//    int mySqrt(int x) {
+//        for(int i=0;i<=x;++i)
+//            if(i*i==x)
+//                return i;
+//            else if(i*i>x)
+//                return i-1;
+//    }
+//};
+//class Solution {
+//public:
+//    int mySqrt(int x) {
+//        if(x==0||x==1)
+//            return x;
+//        int left=0;
+//        int right=x;
+//        int mid=x/2;
+//        while(mid!=0)
+//            if(mid*mid<=x&&(mid+1)*(mid+1)>x)
+//                return mid;
+//            else if((mid+1)*(mid+1)<=x){
+//                left=mid;
+//                mid=left+(right-left)/2;
+//            }
+//           else if(mid*mid>x){
+//                right=mid;
+//                mid=left+(right-left)/2;
+//            }
+//        return mid;
+//   }
+//};
+class Solution {//牛顿法求开方
+public:
+    int mySqrt(int x) {
+        long long y=x;
+        while(y*y>x)
+            y=(y+x/y)/2;
+        return y;
+    }
+};
